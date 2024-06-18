@@ -75,6 +75,7 @@ const reqDailyCheckin = async (header) => {
 (async () => {
   try {
     process.stdout.write('\x1Bc');
+    console.log(`level infinite daily check in \nMade with ❤️ by janexmgd`);
     const listCookie = fs
       .readFileSync('cookie.txt', 'utf-8')
       .replace(/\r/g, '')
