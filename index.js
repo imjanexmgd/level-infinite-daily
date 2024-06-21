@@ -72,6 +72,21 @@ const reqDailyCheckin = async (header) => {
     throw error;
   }
 };
+const checkPoint = async (header) => {
+  try {
+    const { data } = await axios.get(
+      'https://api-pass.levelinfinite.com/api/rewards/proxy/lipass/Points/GetUserTotalPoints',
+      {
+        headers: {
+          ...header,
+        },
+      }
+    );
+    return data.data.total_points;
+  } catch (error) {
+    throw error;
+  }
+};
 (async () => {
   try {
     process.stdout.write('\x1Bc');
@@ -102,8 +117,13 @@ const reqDailyCheckin = async (header) => {
         'x-common-params':
           '{"game_id":"4","area_id":"global","source":"pc_web"}',
       };
+      await checkLogin(headers);
       const userInfo = await getUserInfo(headers);
-      successMessage(`Logged as ${userInfo.username}`);
+
+      const points = await checkPoint(headers);
+      successMessage(
+        `Logged as ${userInfo.username} with total points ${points}`
+      );
       const rewardInfo = await getTask(headers);
       if (rewardInfo.tasks[0].is_completed == true) {
         failMessage(

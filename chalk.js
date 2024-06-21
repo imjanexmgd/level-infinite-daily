@@ -2,7 +2,7 @@ import chalk from 'chalk';
 
 export const successMessage = (message) => {
   const date = new Date();
-  const timeString = chalk.blue(
+  const timeString = chalk.white(
     date.toLocaleTimeString('en-US', {
       hour12: false,
       hour: '2-digit',
@@ -16,7 +16,7 @@ export const successMessage = (message) => {
 
 export const failMessage = (message) => {
   const date = new Date();
-  const timeString = chalk.blue(
+  const timeString = chalk.white(
     date.toLocaleTimeString('en-US', {
       hour12: false,
       hour: '2-digit',
